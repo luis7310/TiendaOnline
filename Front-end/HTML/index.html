@@ -7,7 +7,27 @@
     <link rel="stylesheet" href="./../CSS/index.css"/>
 </head>
 <body>
-    
+    <header class="header">
+        <input id="open-menu" class="header__checkbox" type="checkbox">
+        <label class="header__open-nav-button" for="open-menu" role="button">
+            <img id="header__open-nav-button-img" src="./../SRC/Imagenes/icono-menu-bar.png">
+        </label>
+        <div id="header__logo-container">
+            <a href="#"><img class="header__logo" src="./../SRC/Imagenes/icono-logo.png"></a>
+        </div>
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                <li class="header__nav-item"><a href="#">Inicio</a></li>
+                <li class="header__nav-item"><a href="#">Departamento</a></li>
+            </ul>
+            <input class="busqueda__nav" id="input__nav" type="text">
+            <button class="busqueda__nav" id="btn__nav">Buscar</button>
+            <ul class="header__nav-list">
+                <li class="header__nav-item"><a href="#"><img src="./../SRC/Imagenes/perfil-usuario.png">Iniciar sesión</a></li>
+                <li class="header__nav-item"><a href="#"><img src="./../SRC/Imagenes/carrito-compra.png">Mi carrito</a></li>
+            </ul>
+        </nav>
+    </header>
 
 
     <script src="./../JavaScript/index.js"></script>

@@ -1,0 +1,45 @@
+@property --background-color{
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #fdffdc;
+}
+
+body{
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display:flex;  
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo{
+    max-width: 100%;
+    width: 45px;
+    margin: 10px 10px;
+}
+
+#header__open-nav-button-img{
+    max-width: 100%;
+    width: 45px;
+    margin: 10px 10px;
+}
+
+.header__open-nav-button{
+    position: absolute;
+    right: 15px;
+}
+#open-menu{
+    display: none;
+}
+
+.header__nav > ul{
+    display: none;
+}
+
+.header__checkbox:checked ~ .header__nav > ul{
+    display: block;
+}
