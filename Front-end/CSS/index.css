@@ -10,36 +10,84 @@ body{
     padding: 0;
 }
 
-header{
-    display:flex;  
-    justify-content: space-between;
-    align-items: center;
+
+@media screen and (max-width:800px) {
+    header{
+        display:flex;  
+        justify-content: space-between;
+        align-items: center;
+    }
+    .header__logo{
+        max-width: 100%;
+        width: 45px;
+        margin: 10px 10px;
+    }
+    
+    #header__open-nav-button-img{
+        max-width: 100%;
+        width: 45px;
+        margin: 10px 10px;
+    }
+    
+    .header__open-nav-button{
+        position: absolute;
+        right: 15px;
+    }
+    #open-menu{
+        display: none;
+    }
+    
+    .header__nav > ul{
+        display: none;
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        top:0;
+        left: 0;
+        background-color:#e0feff;
+        z-index: -1;
+    }
+    
+    .header__nav-list{
+        display: flex;
+        flex-direction: column;
+        height: 40vh;
+        margin: auto;
+        justify-content: space-evenly;
+    }
+    
+    .header__checkbox:checked ~ .header__nav > ul{
+        display: flex;
+    }
+    
+    .header__nav-item{
+        list-style: none;
+    
+    }
+    
+    .header__nav-a{
+        text-decoration: none;
+        color: #000000;
+    }
+
+    .header__nav-a:active{
+        color: #002787;
+        text-decoration: dotted;
+    }
+
+    .busqueda__nav{
+        background-color: #fefff1;
+        border: solid 1px;
+        height: 20px;
+    }  
+
+    .busq-container{
+        position: absolute;
+        left: 60px;
+        top:30px;
+    }
 }
 
-.header__logo{
-    max-width: 100%;
-    width: 45px;
-    margin: 10px 10px;
-}
 
-#header__open-nav-button-img{
-    max-width: 100%;
-    width: 45px;
-    margin: 10px 10px;
-}
 
-.header__open-nav-button{
-    position: absolute;
-    right: 15px;
-}
-#open-menu{
-    display: none;
-}
 
-.header__nav > ul{
-    display: none;
-}
-
-.header__checkbox:checked ~ .header__nav > ul{
-    display: block;
-}
