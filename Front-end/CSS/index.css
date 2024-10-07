@@ -10,12 +10,14 @@ body{
     padding: 0;
 }
 
-
-@media screen and (max-width:800px) {
+/*Diseño en smartphone*/
+@media screen and (max-width:700px) {
     header{
+        background-color: #dff5ff;
         display:flex;  
         justify-content: space-between;
         align-items: center;
+        width: 100vw;
     }
     .header__logo{
         max-width: 100%;
@@ -27,6 +29,10 @@ body{
         max-width: 100%;
         width: 45px;
         margin: 10px 10px;
+    }
+
+    .header__open-nav-button:active > #header__open-nav-button-img{
+        width: 40px;
     }
     
     .header__open-nav-button{
@@ -76,15 +82,44 @@ body{
     }
 
     .busqueda__nav{
-        background-color: #fefff1;
+        background-color: #f4fcff;
         border: solid 1px;
-        height: 20px;
+        height: 30px;
+        border-radius: 6px;
+        border-color: #66acac;
     }  
 
     .busq-container{
         position: absolute;
         left: 60px;
-        top:30px;
+        top:20px;
+    }
+    
+    #input__nav{
+        border-radius: 6px;
+        outline: none;
+        width: 40vw;
+    }
+
+    .img-nav-opc{
+        width:30px;
+        margin-right: 10px;
+    }
+
+    #btn__nav{
+        width: 70px;
+    }
+
+    #btn__nav:active{
+        background-color: #e4ffff;
+        width: 65px;
+    }
+}
+/*Diseño en computadora*/
+@media screen and (min-width:700px){
+    
+    #open-menu, #open-menu, #header__open-nav-button-img{
+        display: none;
     }
 }
 
