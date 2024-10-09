@@ -54,6 +54,8 @@ body{
 /*Diseño en smartphone*/
 @media screen and (max-width:999px) {
     header{
+        position: sticky;
+        top:0;
         background-color: #dff5ff;
         display:flex;  
         justify-content: space-between;
@@ -118,10 +120,26 @@ body{
         width:30px;
         margin-right: 10px;
     }
+
+    .aside{
+        display: none;
+    }
+
+    #main{
+        background-color: aqua;
+        min-height: calc(100vh - 80px);
+        width: 100vw;
+    }
+
+    #footer{
+        width: 100vw;
+        height: 100px;
+        background-color: #bad6ff;
+    }
 }
 /*Diseño en computadora*/
 @media screen and (min-width:1000px){
-    
+    /*Barra de navegacion*/
     #input__nav{
 
         margin-left: 10px;
@@ -130,8 +148,8 @@ body{
     }
 
     #input__nav::selection {
-        background-color: #3498db; /* Color de fondo al seleccionar */
-        color: white;              /* Color del texto al seleccionar */
+        background-color: #3498db;
+        color: white;              
     }
 
     #open-menu, #open-menu, #header__open-nav-button-img{
@@ -139,6 +157,8 @@ body{
     }
 
     .header{
+        position: sticky;
+        top:0;
         display: flex;
         width: 100vw;
         background-color: #dff5ff;
@@ -173,6 +193,31 @@ body{
     }
     .header__nav-a:active{
         color: #bad6ff;
+    }
+
+    /*Seccion media*/
+    #container-middle{
+        display: flex;
+        align-items: flex-start;
+        width: 100vw;
+    }
+
+    .aside{
+        width: 15vw;
+        height: calc(100vh - 80px);
+        background-color: #3498db;
+    }
+
+    #main{
+        background-color: aqua;
+        min-height: calc(100vh - 80px);
+        width: 70vw;
+    }
+
+    #footer{
+        width: 100vw;
+        height: 100px;
+        background-color: #bad6ff;
     }
 }
 
