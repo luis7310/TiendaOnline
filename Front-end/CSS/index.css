@@ -16,6 +16,7 @@ body{
 }
 
 .header__nav-item{
+    user-select: none;
     list-style: none;
 
 }
@@ -126,7 +127,6 @@ body{
     }
 
     #main{
-        background-color: aqua;
         min-height: calc(100vh - 80px);
         width: 100vw;
     }
@@ -205,11 +205,9 @@ body{
     .aside{
         width: 15vw;
         height: calc(100vh - 80px);
-        background-color: #3498db;
     }
 
     #main{
-        background-color: aqua;
         min-height: calc(100vh - 80px);
         width: 70vw;
     }
