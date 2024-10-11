@@ -16,7 +16,7 @@
         <ul id="ul__header-container">
             <li class="header__list-element list-element">Productos
                 <ul class="list-sub-menu">
-                    <li class="list-element"><a class="header__list-a list-element" href="#">Agregar</a></li>
+                    <li class="list-element"><a id="prod-a-agreg" class="header__list-a list-element" href="#">Agregar</a></li>
                     <li class="list-element"><a class="header__list-a list-element" href="#">Eliminar</a></li>
                     <li class="list-element"><a class="header__list-a list-element" href="#">Editar</a></li>
                     <li class="list-element"><a class="header__list-a list-element" href="#">Consultar</a></li>
@@ -48,7 +48,25 @@
 
     </aside>
     <main id="main">
-
+            <div class="ventana-show" id="pag__agregar-producto">
+                <h2 class="text-ventana">Agregar producto</h2>
+                <label for="nombre-prod" class="text-inputs">Nombre</label>
+                <input id="nombre-prod" class="input-ventana" type="text">
+                <label for="precio-prod" class="text-inputs">Precio</label>
+                <input id="precio-prod" class="input-ventana" type="number">
+                <label class="text-inputs" for="descrip-prod">Descripción</label>
+                <textarea id="descrip-prod" class="tex-area-vent"></textarea>
+                <label for="img-prod" class="text-inputs">Imágen</label>
+                <input style="border: none;" class="input-ventana" type="file" id="img-prod" name="archivo" accept="image/*">
+                <label class="text-inputs" for="categ-prod">Categoria</label>
+                <input id="categ-prod" class="input-ventana" type="text">
+                <label for="stock-prod">Stock</label>
+                <input id="stock-prod" class="input-ventana" type="number">
+                <div class="button-container">
+                    <button class="btn-form">Aceptar</button>
+                    <button class="btn-form">Cancelar</button>
+                </div>
+            </div>
     </main>
     <aside class="aside">
 
