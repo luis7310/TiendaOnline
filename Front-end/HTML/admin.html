@@ -48,6 +48,8 @@
 
     </aside>
     <main id="main">
+        <!-- Productos -->
+
             <div class="ventana-show no-visible-class" id="pag__agregar-producto">
                 <h2 class="text-ventana">Agregar producto</h2>
                 <label for="nombre-prod" class="text-inputs">Nombre</label>
@@ -66,11 +68,13 @@
                     <button class="btn-form">Aceptar</button>
                     <button class="btn-form">Cancelar</button>
                 </div>
+                <div class="button-container">
+                </div>
             </div>
             <div class="ventana-show no-visible-class" id="pag__eliminar-producto">
                 <h2 class="text-ventana">Eliminar producto</h2>
-                <label for="nombre-prod-elim-busq" class="text-inputs">Id</label>
-                <input id="nombre-prod-elim-busq" class="input-ventana" type="number">
+                <label for="id-prod-elim-busq" class="text-inputs">Id</label>
+                <input id="id-prod-elim-busq" class="input-ventana" type="number">
                 <div class="button-container">
                     <button class="btn-form">Buscar</button>
                 </div>
@@ -89,11 +93,13 @@
                     <button class="btn-form">Aceptar</button>
                     <button class="btn-form">Cancelar</button>
                 </div>
+                <div class="button-container">
+                </div>
             </div>
             <div class="ventana-show no-visible-class" id="pag__editar-producto">
                 <h2 class="text-ventana">Editar producto</h2>
-                <label for="nombre-prod-edit-busq" class="text-inputs">Id</label>
-                <input id="nombre-prod-edit-busq" class="input-ventana" type="number">
+                <label for="id-prod-edit-busq" class="text-inputs">Id</label>
+                <input id="id-prod-edit-busq" class="input-ventana" type="number">
                 <div class="button-container">
                     <button class="btn-form">Buscar</button>
                 </div>
@@ -114,11 +120,13 @@
                     <button class="btn-form">Aceptar</button>
                     <button class="btn-form">Cancelar</button>
                 </div>
+                <div class="button-container">
+                </div>
             </div>
             <div class="ventana-show no-visible-class" id="pag__consultar-producto">
                 <h2 class="text-ventana">Consultar producto</h2>
-                <label for="nombre-prod-cons-busq" class="text-inputs">Id</label>
-                <input id="nombre-prod-cons-busq" class="input-ventana" type="number">
+                <label for="id-prod-cons-busq" class="text-inputs">Id</label>
+                <input id="id-prod-cons-busq" class="input-ventana" type="number">
                 <div class="button-container">
                     <button class="btn-form">Buscar</button>
                 </div>
@@ -137,7 +145,112 @@
                     <button class="btn-form">Aceptar</button>
                     <button class="btn-form">Cancelar</button>
                 </div>
+                <div class="button-container">
+                </div>
             </div>
+           
+        <!-- Pedidos -->
+
+        <!-- Usuarios -->
+
+        <div class="ventana-show no-visible-class" id="ventana-reg-user">
+            <h2 class="text-ventana">Registrar Usuario</h2>
+            <label for="nombre-user-reg" class="text-inputs">Nombre</label>
+            <input id="nombre-user-reg" class="input-ventana" type="text">
+            <label for="correo-user-reg" class="text-inputs">Correo electronico</label>
+            <input id="correo-user-reg" class="input-ventana" type="mail">
+            <label class="text-inputs" for="pass-user-reg">Contraseña</label>
+            <input id="pass-user-reg" class="input-ventana" type="password">
+            <label class="text-inputs" for="pass-user-reg-2">Confirmar Contraseña</label>
+            <input id="pass-user-reg-2" class="input-ventana" type="password">
+            <label for="dir-user-reg" class="text-inputs">Direccion</label>
+            <input id="dir-user-reg" class="input-ventana" type="text">
+            <label for="tel-user-reg" class="text-inputs">Teléfono</label>
+            <input id="tel-user-reg" class="input-ventana" type="number">
+            <div class="button-container">
+                <button class="btn-form">Aceptar</button>
+                <button class="btn-form">Cancelar</button>
+            </div>
+            <div class="button-container">
+
+            </div>
+        </div>
+        <div class="ventana-show no-visible-class" id="ventana-elim-user">
+            <h2 class="text-ventana">Eliminar Usuario</h2>
+            <label for="id-user-elim-busq" class="text-inputs">Id</label>                
+            <input id="id-user-elim-busq" class="input-ventana" type="number">
+            <div class="button-container">
+            <button class="btn-form">Buscar</button>
+            </div>
+            <label for="nombre-user-elim" class="text-inputs">Nombre</label>
+            <input id="nombre-user-elim" readonly class="input-ventana" type="text">
+            <label for="correo-user-elim" class="text-inputs">Correo electronico</label>
+            <input id="correo-user-elim" readonly class="input-ventana" type="mail">
+            <label for="dir-user-elim" class="text-inputs">Direccion</label>
+            <input id="dir-user-elim" readonly class="input-ventana" type="text">
+            <label for="tel-user-elim" class="text-inputs">Teléfono</label>
+            <input id="tel-user-elim" readonly class="input-ventana" type="number">
+            <div class="button-container">
+                <button class="btn-form">Aceptar</button>
+                <button class="btn-form">Cancelar</button>
+            </div>
+            <div class="button-container">
+
+            </div>
+        </div>
+        <div class="ventana-show no-visible-class" id="ventana-edit-user">
+            <h2 class="text-ventana">Editar Usuario</h2>
+            <label for="id-user-edit-busq" class="text-inputs">Id</label>                
+            <input id="id-user-edit-busq" class="input-ventana" type="number">
+            <div class="button-container">
+            <button class="btn-form">Buscar</button>
+            </div>
+            <label for="nombre-user-edit" class="text-inputs">Nombre</label>
+            <input id="nombre-user-edit" class="input-ventana" type="text">
+            <label for="correo-user-edit" class="text-inputs">Correo electronico</label>
+            <input id="correo-user-edit" class="input-ventana" type="mail">
+            <label class="text-inputs" for="pass-user-edit">Contraseña</label>
+            <input id="pass-user-edit" class="input-ventana" type="password">
+            <label class="text-inputs" for="pass-user-edit-2">Confirmar Contraseña</label>
+            <input id="pass-user-edit-2" class="input-ventana" type="password">
+            <label for="dir-user-edit" class="text-inputs">Direccion</label>
+            <input id="dir-user-edit" class="input-ventana" type="text">
+            <label for="tel-user-edit" class="text-inputs">Teléfono</label>
+            <input id="tel-user-edit" class="input-ventana" type="number">
+            <div class="button-container">
+                <button class="btn-form">Aceptar</button>
+                <button class="btn-form">Cancelar</button>
+            </div>
+            <div class="button-container">
+                
+            </div>
+        </div>
+        <div class="ventana-show" id="ventana-cons-user">
+            <h2 class="text-ventana">Consultar Usuario</h2>
+            <label for="id-user-cons-busq" class="text-inputs">Id</label>                
+            <input id="id-user-cons-busq" class="input-ventana" type="number">
+            <div class="button-container">
+            <button class="btn-form">Buscar</button>
+            </div>
+            <label for="nombre-user-cons" class="text-inputs">Nombre</label>
+            <input id="nombre-user-cons" readonly class="input-ventana" type="text">
+            <label for="correo-user-cons" class="text-inputs">Correo electronico</label>
+            <input id="correo-user-cons" readonly class="input-ventana" type="mail">
+            <label for="dir-user-cons" class="text-inputs">Direccion</label>
+            <input id="dir-user-cons" readonly class="input-ventana" type="text">
+            <label for="tel-user-cons" class="text-inputs">Teléfono</label>
+            <input id="tel-user-cons" readonly class="input-ventana" type="number">
+            <div class="button-container">
+                <button class="btn-form">Aceptar</button>
+                <button class="btn-form">Cancelar</button>
+            </div>
+            <div class="button-container">
+                
+            </div>
+        </div>
+
+
+
     </main>
     <aside class="aside">
 
