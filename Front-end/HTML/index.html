@@ -19,7 +19,7 @@
             <ul class="header__nav-list">
                 <li class="header__nav-item"><a class="header__nav-a" href="#"><img class="img-nav-opc" src="./../SRC/Imagenes/home.png">Inicio</a></li>
                 <li class="header__nav-item"><a class="header__nav-a" href="#"><img class="img-nav-opc" src="./../SRC/Imagenes/menu-opciones.png">Departamento</a></li>
-                <li class="header__nav-item"><a class="header__nav-a" href="#"><img class="img-nav-opc" src="./../SRC/Imagenes/perfil-usuario.png">Iniciar sesión</a></li>
+                <li class="header__nav-item"><a id="login-btn" class="header__nav-a" href="#"><img class="img-nav-opc" src="./../SRC/Imagenes/perfil-usuario.png">Iniciar sesión</a></li>
                 <li class="header__nav-item"><a class="header__nav-a" href="#"><img class="img-nav-opc" src="./../SRC/Imagenes/carrito-compra.png">Mi carrito</a></li>
             </ul>
             <div class="busq-container">
@@ -33,7 +33,24 @@
 
         </aside>
         <main id="main">
-
+            <div id="loggin_data-form">
+                <div id="container-loggin-f" class="no-visible">
+                    <div class="container-loggin-bt">
+                        <h2 class="text-loggin">Ingrese sus datos</h2>
+                    </div>
+                    <input id="input_login_mail" class="input-loggin" type="mail" placeholder="Correo electrónico">
+                    <input id="input_login_pass" class="input-loggin" type="password" placeholder="Contraseña">
+                    <div class="container-loggin-bt">
+                        <button id="btn_login_page" class="btn-large">Iniciar sesión</button>
+                    </div>
+                    <div class="container-loggin-bt">
+                        <a class="text-loggin-a-inp" >¿Ha olvidado su contraseña?</a>
+                    </div>
+                    <div id="msg-text-inp" class="error-text text-loggin container-loggin-bt">
+                        
+                    </div>
+                </div>
+            </div>
         </main>
         <aside class="aside">
 
