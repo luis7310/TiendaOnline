@@ -17,7 +17,7 @@
             <li class="header__list-element list-element">Productos
                 <ul class="list-sub-menu">
                     <li class="list-element"><a id="prod-a-agreg" class="header__list-a list-element" href="#">Agregar</a></li>
-                    <li class="list-element"><a class="header__list-a list-element" href="#">Eliminar</a></li>
+                    <li class="list-element"><a id="prod-a-delete" class="header__list-a list-element" href="#">Eliminar</a></li>
                     <li class="list-element"><a class="header__list-a list-element" href="#">Editar</a></li>
                     <li class="list-element"><a class="header__list-a list-element" href="#">Consultar</a></li>
                 </ul>
@@ -52,23 +52,23 @@
 
             <div class="ventana-show no-visible-class" id="pag__agregar-producto">
                 <h2 class="text-ventana">Agregar producto</h2>
-                <label for="nombre-prod" class="text-inputs">Nombre</label>
-                <input id="nombre-prod" class="input-ventana" type="text">
-                <label for="precio-prod" class="text-inputs">Precio</label>
-                <input id="precio-prod" class="input-ventana" type="number">
-                <label class="text-inputs" for="descrip-prod">Descripción</label>
-                <textarea id="descrip-prod" class="tex-area-vent"></textarea>
-                <label for="img-prod" class="text-inputs">Imágen</label>
-                <input style="border: none;" class="input-ventana" type="file" id="img-prod" name="archivo" accept="image/*">
-                <label class="text-inputs" for="categ-prod">Categoria</label>
-                <input id="categ-prod" class="input-ventana" type="text">
-                <label for="stock-prod" class="text-inputs">Stock</label>
-                <input id="stock-prod" class="input-ventana" type="number">
+                <label for="nombre-add-prod" class="text-inputs">Nombre</label>
+                <input id="nombre-add-prod" class="input-ventana" type="text">
+                <label for="precio-add-prod" class="text-inputs">Precio</label>
+                <input id="precio-add-prod" class="input-ventana" type="number">
+                <label class="text-inputs" for="descrip-add-prod">Descripción</label>
+                <textarea id="descrip-add-prod" class="tex-area-vent"></textarea>
+                <label for="img-add-prod" class="text-inputs">Imágen</label>
+                <input style="border: none;" class="input-ventana" type="file" id="img-add-prod" name="archivo" accept="image/*">
+                <label class="text-inputs" for="categ-add-prod">Categoria</label>
+                <input id="categ-add-prod" class="input-ventana" type="text">
+                <label for="stock-add-prod" class="text-inputs">Stock</label>
+                <input id="stock-add-prod" class="input-ventana" type="number">
                 <div class="button-container">
-                    <button class="btn-form">Aceptar</button>
-                    <button class="btn-form">Cancelar</button>
+                    <button id="accept_add-product" class="btn-form">Aceptar</button>
+                    <button id="cancelar_add-product" class="btn-form">Cancelar</button>
                 </div>
-                <div class="button-container">
+                <div id="add-prod-msg" class="button-container text-error">
                 </div>
             </div>
             <div class="ventana-show no-visible-class" id="pag__eliminar-producto">
@@ -76,24 +76,24 @@
                 <label for="id-prod-elim-busq" class="text-inputs">Id</label>
                 <input id="id-prod-elim-busq" class="input-ventana" type="number">
                 <div class="button-container">
-                    <button class="btn-form">Buscar</button>
+                    <button id="buscar_prod_elim" class="btn-form">Buscar</button>
                 </div>
                 <label for="nombre-prod-elim" class="text-inputs">Nombre</label>
-                <input id="nombre-prod-elim" readonly class="input-ventana" type="text">
+                <input id="nombre-prod-elim" readonly class="input-ventana clean-inp" type="text">
                 <label for="precio-prod-elim" class="text-inputs">Precio</label>
-                <input id="precio-prod-elim" readonly class="input-ventana" type="number">
+                <input id="precio-prod-elim" readonly class="input-ventana clean-inp" type="number">
                 <label class="text-inputs" for="descrip-prod-elim">Descripción</label>
-                <textarea id="descrip-prod-elim" readonly class="tex-area-vent"></textarea>
-                <img src="./../SRC/Imagenes/"  alt="Imagen del producto" title="Imagen actual del producto" class="img-mini-prod">
+                <textarea id="descrip-prod-elim" readonly class="tex-area-vent clean-inp"></textarea>
+                <img src="./../SRC/Imagenes/"  alt="Imagen del producto" title="Imagen actual del producto" class="clean-inp img-mini-prod">
                 <label class="text-inputs" for="categ-prod-elim">Categoria</label>
-                <input id="categ-prod-elim" readonly class="input-ventana" type="text">
+                <input id="categ-prod-elim" readonly class="clean-inp input-ventana" type="text">
                 <label for="stock-prod-elim" class="text-inputs">Stock</label>
-                <input id="stock-prod-elim" readonly class="input-ventana" type="number">
+                <input id="stock-prod-elim" readonly class="clean-inp input-ventana" type="number">
                 <div class="button-container">
                     <button class="btn-form">Aceptar</button>
-                    <button class="btn-form">Cancelar</button>
+                    <button id="cancel-del-prod" class="btn-form">Cancelar</button>
                 </div>
-                <div class="button-container">
+                <div id="delete_prod_msg" class="button-container text-error">
                 </div>
             </div>
             <div class="ventana-show no-visible-class" id="pag__editar-producto">
@@ -137,7 +137,7 @@
                 <label class="text-inputs" for="descrip-prod-cons">Descripción</label>
                 <textarea id="descrip-prod-cons" readonly class="tex-area-vent"></textarea>
                 <img src="./../SRC/Imagenes/"  alt="Imagen del producto" title="Imagen actual del producto" class="img-mini-prod">
-                <label class="text-inputs" for="categ-prod">Categoria</label>
+                <label class="text-inputs" for="categ-prod-cons">Categoria</label>
                 <input id="categ-prod-cons" readonly class="input-ventana" type="text">
                 <label for="stock-prod-cons" class="text-inputs">Stock</label>
                 <input id="stock-prod-cons" readonly class="input-ventana" type="number">
@@ -259,5 +259,6 @@
 <footer id="footer">
 
 </footer>
+<script src="./../JavaScript/admin.js"></script>
 </body>
 </html>

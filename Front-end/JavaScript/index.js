@@ -36,7 +36,6 @@ btn_login.addEventListener('click',()=>{
     for(let i = 0; i < botones.length; i++){
         botones[i].classList.add('desactivado');
     }
-    
     msg_inp.innerText= "";
     inp_mail.classList.remove("error-input");
     inp_pass.classList.remove("error-input");
