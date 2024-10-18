@@ -135,6 +135,11 @@ body{
     color: #a52424;
  }
 
+ .desactivado{
+    pointer-events: none; /* Desactiva la interacción con el botón */
+    opacity: 0.5; /* Cambia la opacidad para mostrar que está desactivado */
+  }
+
 /*Diseño en smartphone*/
 @media screen and (max-width:999px) {
     header{
