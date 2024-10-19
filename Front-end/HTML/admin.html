@@ -18,8 +18,8 @@
                 <ul class="list-sub-menu">
                     <li class="list-element"><a id="prod-a-agreg" class="header__list-a list-element" href="#">Agregar</a></li>
                     <li class="list-element"><a id="prod-a-delete" class="header__list-a list-element" href="#">Eliminar</a></li>
-                    <li class="list-element"><a class="header__list-a list-element" href="#">Editar</a></li>
-                    <li class="list-element"><a class="header__list-a list-element" href="#">Consultar</a></li>
+                    <li class="list-element"><a id="prod-a-edit" class="header__list-a list-element" href="#">Editar</a></li>
+                    <li class="list-element"><a id="prod-a-cons" class="header__list-a list-element" href="#">Consultar</a></li>
                 </ul>
             </li>    
             <li class="header__list-element list-element">Pedidos
@@ -99,28 +99,28 @@
             <div class="ventana-show no-visible-class" id="pag__editar-producto">
                 <h2 class="text-ventana">Editar producto</h2>
                 <label for="id-prod-edit-busq" class="text-inputs">Id</label>
-                <input id="id-prod-edit-busq" class="input-ventana" type="number">
+                <input id="id-prod-edit-busq" class="input-ventana clean-inp-edit" type="number">
                 <div class="button-container">
-                    <button class="btn-form">Buscar</button>
+                    <button id="btn_edit_prod" class="btn-form">Buscar</button>
                 </div>
                 <label for="nombre-prod-edit" class="text-inputs">Nombre</label>
-                <input id="nombre-prod-edit" class="input-ventana" type="text">
+                <input id="nombre-prod-edit" class="input-ventana clean-inp-edit" type="text">
                 <label for="precio-prod-edit" class="text-inputs">Precio</label>
-                <input id="precio-prod-edit" class="input-ventana" type="number">
+                <input id="precio-prod-edit" class="input-ventana clean-inp-edit" type="number">
                 <label class="text-inputs" for="descrip-prod-edit">Descripción</label>
-                <textarea id="descrip-prod-edit" class="tex-area-vent"></textarea>
+                <textarea id="descrip-prod-edit" class="tex-area-vent clean-inp-edit"></textarea>
                 <label for="img-prod-edit" class="text-inputs">Imágen</label>
-                <input style="border: none;" class="input-ventana" type="file" id="img-prod-edit" name="archivo" accept="image/*">
-                <img src="./../SRC/Imagenes/"  alt="Imagen del producto" title="Imagen actual del producto" class="img-mini-prod">
+                <input style="border: none;" class="input-ventana clean-inp-edit" type="file" id="img-prod-edit" name="archivo" accept="image/*">
+                <img src="./../SRC/Imagenes/"  alt="Imagen del producto" title="Imagen actual del producto" class="clean-inp-edit img-mini-prod">
                 <label class="text-inputs" for="categ-prod-edit">Categoria</label>
-                <input id="categ-prod-edit" class="input-ventana" type="text">
+                <input id="categ-prod-edit" class="input-ventana clean-inp-edit" type="text">
                 <label for="stock-prod-edit" class="text-inputs">Stock</label>
-                <input id="stock-prod-edit" class="input-ventana" type="number">
+                <input id="stock-prod-edit" class="input-ventana clean-inp-edit" type="number">
                 <div class="button-container">
                     <button class="btn-form">Aceptar</button>
-                    <button class="btn-form">Cancelar</button>
+                    <button id="btn-cancel-edit-prod" class="btn-form">Cancelar</button>
                 </div>
-                <div class="button-container">
+                <div id="msg_error_edit_prod" class="text-error button-container">
                 </div>
             </div>
             <div class="ventana-show no-visible-class" id="pag__consultar-producto">
@@ -128,24 +128,23 @@
                 <label for="id-prod-cons-busq" class="text-inputs">Id</label>
                 <input id="id-prod-cons-busq" class="input-ventana" type="number">
                 <div class="button-container">
-                    <button class="btn-form">Buscar</button>
+                    <button id="btn-buscar-cons-prod" class="btn-form">Buscar</button>
                 </div>
                 <label for="nombre-prod-cons" class="text-inputs">Nombre</label>
-                <input id="nombre-prod-cons" class="input-ventana" type="text" readonly>
+                <input id="nombre-prod-cons" class="input-ventana clean-inp-cons" type="text" readonly>
                 <label for="precio-prod-cons" class="text-inputs">Precio</label>
-                <input id="precio-prod-cons" readonly class="input-ventana" type="number">
+                <input id="precio-prod-cons" readonly class="input-ventana clean-inp-cons" type="number">
                 <label class="text-inputs" for="descrip-prod-cons">Descripción</label>
-                <textarea id="descrip-prod-cons" readonly class="tex-area-vent"></textarea>
-                <img src="./../SRC/Imagenes/"  alt="Imagen del producto" title="Imagen actual del producto" class="img-mini-prod">
+                <textarea id="descrip-prod-cons" readonly class="tex-area-vent clean-inp-cons"></textarea>
+                <img src="./../SRC/Imagenes/"  alt="Imagen del producto" title="Imagen actual del producto" class="img-mini-prod clean-inp-cons">
                 <label class="text-inputs" for="categ-prod-cons">Categoria</label>
-                <input id="categ-prod-cons" readonly class="input-ventana" type="text">
+                <input id="categ-prod-cons" readonly class="input-ventana clean-inp-cons" type="text">
                 <label for="stock-prod-cons" class="text-inputs">Stock</label>
-                <input id="stock-prod-cons" readonly class="input-ventana" type="number">
+                <input id="stock-prod-cons" readonly class="input-ventana clean-inp-cons" type="number">
                 <div class="button-container">
-                    <button class="btn-form">Aceptar</button>
-                    <button class="btn-form">Cancelar</button>
+                    <button id="accept-cons-prod" class="btn-form">Aceptar</button>
                 </div>
-                <div class="button-container">
+                <div id="msg_error_cons_prod" class="text-error button-container">
                 </div>
             </div>
            

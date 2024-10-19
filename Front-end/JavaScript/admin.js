@@ -114,6 +114,7 @@ btn_buscar_elim_pro.addEventListener('click',()=>{
     }
 })
 
+//boton cancelar eliminar producto
 cancel_btn_del_pro.addEventListener('click',()=>{
     pag_dele_prod.classList.add('no-visible-class');
     document.getElementById("id-prod-elim-busq").classList.remove('input-error');
@@ -123,4 +124,65 @@ cancel_btn_del_pro.addEventListener('click',()=>{
         document.getElementsByClassName("clean-inp")[i].value = ""
     }
     activarNav()
+})
+
+//pagina eliminar producto
+document.getElementById("prod-a-edit").addEventListener('click',()=>{
+    document.getElementById("pag__editar-producto").classList.remove('no-visible-class');
+    desactivarNav();
+})
+
+//boton cancelar pagina editar producto
+document.getElementById("btn-cancel-edit-prod").addEventListener('click',()=>{
+    document.getElementById("pag__editar-producto").classList.add('no-visible-class');
+    document.getElementById("msg_error_edit_prod").innerText = "";
+    for(let i=0;i<document.getElementsByClassName("clean-inp-edit").length;i++){
+        document.getElementsByClassName("clean-inp-edit")[i].value = "";
+        document.getElementsByClassName("clean-inp-edit")[i].classList.remove('input-error');
+    }
+    activarNav();
+})
+
+//boton buscar producto pag editar producto
+document.getElementById("btn_edit_prod").addEventListener('click',()=>{
+    document.getElementById("id-prod-edit-busq").classList.remove('input-error');
+    document.getElementById("msg_error_edit_prod").innerText = ""; 
+    if(document.getElementById("id-prod-edit-busq").value == ""){
+        document.getElementById("id-prod-edit-busq").classList.add('input-error');
+        document.getElementById("msg_error_edit_prod").innerText = "Ingrese el id del producto";
+    }
+    else{
+        //buscar producto en backend
+    }
+})
+
+
+//pagina consultar producto
+document.getElementById("prod-a-cons").addEventListener('click',()=>{
+    document.getElementById("pag__consultar-producto").classList.remove('no-visible-class');
+    desactivarNav();
+})
+
+//cancelar consultar peoducto
+document.getElementById("accept-cons-prod").addEventListener('click',()=>{
+    document.getElementById("pag__consultar-producto").classList.add('no-visible-class');
+    document.getElementById("id-prod-cons-busq").classList.remove('input-error');
+    document.getElementById("msg_error_cons_prod").innerText = "";
+    for(let i=0;i<document.getElementsByClassName("clean-inp-cons").length;i++){
+        document.getElementsByClassName("clean-inp-cons")[i].value = "";
+    }
+    activarNav();
+})
+
+//boton buscar producto en consultar producto
+document.getElementById("btn-buscar-cons-prod").addEventListener('click',()=>{
+    document.getElementById("msg_error_cons_prod").innerText = "";
+    document.getElementById("id-prod-cons-busq").classList.remove('input-error');
+    if(document.getElementById("id-prod-cons-busq").value == ""){
+        document.getElementById("id-prod-cons-busq").classList.add('input-error');
+        document.getElementById("msg_error_cons_prod").innerText = "Ingrese el id del producto";
+    }
+    else{
+        //buscar producto en backend
+    }
 })
