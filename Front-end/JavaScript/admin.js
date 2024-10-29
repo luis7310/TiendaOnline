@@ -89,8 +89,40 @@ aceppt_add_prod.addEventListener('click',()=>{
                             document.getElementById("add-prod-msg").innerText = "Ingrese el stock del producto";
                         }
                         else{
-                            //mandar datos al backend
-                        }
+                            img = new Blob([document.getElementById("img-add-prod").value], { type: document.getElementById("img-add-prod").value.type });
+                            let data = {
+                                "nombre": document.getElementById("nombre-add-prod").value,
+                                "precio": document.getElementById("precio-add-prod").value,
+                                "descripcion": document.getElementById("descrip-add-prod").value,
+                                "imagen": img,
+                                "categoria": document.getElementById("categ-add-prod").value,
+                                "stock": document.getElementById("stock-add-prod").value
+                            };
+                            aceppt_add_prod.disabled = true;
+                            fetch('http://localhost:3000/productos/registrar', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(data),
+                            })
+                            .then(response => {
+                                return response.json();})
+                            .then(response2 =>{
+                                    document.getElementById("nombre-add-prod").value = "";
+                                    document.getElementById("precio-add-prod").value = "";
+                                    document.getElementById("descrip-add-prod").value = "";
+                                    document.getElementById("img-add-prod").value = "";
+                                    document.getElementById("categ-add-prod").value = "";
+                                    document.getElementById("stock-add-prod").value = "";
+                                    document.getElementById("add-prod-msg").innerText = "¡Registro exitoso!"
+                                    setTimeout(() => {
+                                        document.getElementById("add-prod-msg").innerText = "";
+                                    }, 3000);
+                                })
+                                .catch(error => document.getElementById("add-prod-msg").innerText = "Algo salió mal, intente de nuevo. \n error:" + error);
+                                aceppt_add_prod.disabled = false;
+                            }
                     }
                 }
             }
