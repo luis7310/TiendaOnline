@@ -144,6 +144,35 @@ btn_buscar_elim_pro.addEventListener('click',()=>{
         document.getElementById("id-prod-elim-busq").classList.add('input-error');
         document.getElementById("delete_prod_msg").innerText = "Ingrese el id del producto";
     }
+    else{
+        let data = {
+            "id": document.getElementById("id-prod-elim-busq").value
+        }
+        fetch('http://localhost:3000/productos/eliminar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            return response.json();})
+        .then(response2 =>{
+            let imgBlob = new Blob([response2.imagen], { type: "image/png" });
+            let img = URL.createObjectURL(imgBlob);
+            console.log(img)
+            document.getElementById("nombre-prod-elim").value = response2.nombre;
+            document.getElementById("precio-prod-elim").value = response2.precio;
+            document.getElementById("descrip-prod-elim").value = response2.descripcion;
+            document.getElementById("img-prod-elim").src = img;
+            document.getElementById("categ-prod-elim").value = response2.categoria;
+            document.getElementById("stock-prod-elim").value = response2.stock;
+            
+        })
+        .catch(error =>{
+            document.getElementById("delete_prod_msg").innerText = "Algo salió mal, intente de nuevo \n "+ error;
+        })
+    }
 })
 
 //boton cancelar eliminar producto
@@ -152,6 +181,7 @@ cancel_btn_del_pro.addEventListener('click',()=>{
     document.getElementById("id-prod-elim-busq").classList.remove('input-error');
     document.getElementById("id-prod-elim-busq").value = ""
     document.getElementById("delete_prod_msg").innerText = "";
+    document.getElementById("img-prod-elim").src = "";
     for(let i=0;i<document.getElementsByClassName("clean-inp").length;i++){
         document.getElementsByClassName("clean-inp")[i].value = ""
     }
