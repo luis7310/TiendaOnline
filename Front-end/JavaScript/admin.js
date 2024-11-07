@@ -148,7 +148,7 @@ btn_buscar_elim_pro.addEventListener('click',()=>{
         let data = {
             "id": document.getElementById("id-prod-elim-busq").value
         }
-        fetch('http://localhost:3000/productos/eliminar', {
+        fetch('http://localhost:3000/productos/consultar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -167,7 +167,7 @@ btn_buscar_elim_pro.addEventListener('click',()=>{
             document.getElementById("img-prod-elim").src = img;
             document.getElementById("categ-prod-elim").value = response2.categoria;
             document.getElementById("stock-prod-elim").value = response2.stock;
-            
+            document.getElementById("acep-del-prod").disabled = false;
         })
         .catch(error =>{
             document.getElementById("delete_prod_msg").innerText = "Algo salió mal, intente de nuevo \n "+ error;
@@ -182,10 +182,50 @@ cancel_btn_del_pro.addEventListener('click',()=>{
     document.getElementById("id-prod-elim-busq").value = ""
     document.getElementById("delete_prod_msg").innerText = "";
     document.getElementById("img-prod-elim").src = "";
+    document.getElementById("acep-del-prod").disabled = true;
     for(let i=0;i<document.getElementsByClassName("clean-inp").length;i++){
         document.getElementsByClassName("clean-inp")[i].value = ""
     }
     activarNav()
+})
+
+//boton aceptar eliminar producto
+document.getElementById("acep-del-prod").addEventListener('click',()=>{
+    if(document.getElementById("id-prod-elim-busq").value == ""){
+        document.getElementById("id-prod-elim-busq").classList.add('input-error');
+        document.getElementById("delete_prod_msg").innerText = "Ingrese el id del producto";
+    }
+    else{
+        let data = {
+            "id" : document.getElementById("id-prod-elim-busq").value
+        }
+
+        fetch('http://localhost:3000/productos/eliminar/id', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => {return response.json();})
+        .then(response2 =>{
+            document.getElementById("acep-del-prod").disabled = true;
+            document.getElementById("id-prod-elim-busq").classList.remove('input-error');
+            document.getElementById("id-prod-elim-busq").value = ""
+            document.getElementById("delete_prod_msg").innerText = "";
+            document.getElementById("img-prod-elim").src = "";
+            for(let i=0;i<document.getElementsByClassName("clean-inp").length;i++){
+                document.getElementsByClassName("clean-inp")[i].value = ""
+            }
+            document.getElementById("delete_prod_msg").innerText = response2.mensaje;
+            setTimeout(() => {
+                document.getElementById("delete_prod_msg").innerText = "";
+            }, 3000);
+        })
+        .catch(error =>{
+            document.getElementById("delete_prod_msg").innerText = "Algo salió mal, intente de nuevo \n "+ error;
+        })
+    }
 })
 
 //pagina eliminar producto
