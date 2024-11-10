@@ -58,3 +58,14 @@ exports.elimProdId = async (req, res) => {
         console.log(error);
     }
 };
+
+exports.consProdAll = async (req,res) => {
+    let sqlCode = `SELECT id, nombre FROM productos;`;
+    try {
+        let result = await db.promise().execute(sqlCode);
+        res.status(201).json(result);
+    }
+    catch(error){
+        console.log(error);
+    }
+}

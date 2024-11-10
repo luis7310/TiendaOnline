@@ -87,6 +87,26 @@ body{
     width: 100vw;
 }
 
+.table {
+    width: 80%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    max-height: 80vh;
+    min-height: 40vh;
+    background-color: #f2f2f2;
+  }
+
+  #tabla-show-prod > .element-table:nth-child(odd){
+    background-color: #fff;
+  }
+
+.element-table{
+    padding: 1px;
+    text-align: center;
+    border: 1px solid #000;
+    overflow: hidden;
+  }
+ 
 
 .aside{
     width: 15vw;

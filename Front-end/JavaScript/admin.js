@@ -24,6 +24,40 @@ function activarNav(){
     }
 }
 
+//mostrar productos aside
+function mostrarProductosAside(){
+    var containerProdTab = document.getElementById("tabla-show-prod"); //Contenedor de la tabla
+    fetch('http://localhost:3000/productos/consultar/todos', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => {
+        return response.json();})
+    .then(response2 =>{
+        containerProdTab.innerHTML = "";
+        for(element in response2[0]){
+            containerProdTab.innerHTML += `<tr class="element-table containe-element">
+                                                <td>${response2[0][element].id}</td>
+                                                <td>${response2[0][element].nombre}</td>
+                                            </tr>`;
+        }
+        containerProdTab.innerHTML += `<tr class="element-table containe-element">
+                                                <td>Total</td>
+                                                <td>${response2[0].length}</td>
+                                            </tr>`;
+    })
+    .catch(error =>{
+        console.log(error);
+    })
+}
+
+document.getElementById("btn-reload-prod").addEventListener('click',()=>{
+    mostrarProductosAside();
+});
+
+
 //ventana productos
 //boton mostrar ventana agregar producto
 prod_add.addEventListener('click',()=>{
