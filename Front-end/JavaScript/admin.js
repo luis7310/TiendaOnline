@@ -51,7 +51,7 @@ cancel_add_prod.addEventListener('click',()=>{
 })
 
 //boton aceptar, ventana agregar producto
-aceppt_add_prod.addEventListener('click',()=>{
+aceppt_add_prod.addEventListener('click',async ()=>{
     document.getElementById("add-prod-msg").innerText = "";
     document.getElementById("nombre-add-prod").classList.remove('input-error');
     document.getElementById("precio-add-prod").classList.remove('input-error');
@@ -89,7 +89,22 @@ aceppt_add_prod.addEventListener('click',()=>{
                             document.getElementById("add-prod-msg").innerText = "Ingrese el stock del producto";
                         }
                         else{
-                            img = new Blob([document.getElementById("img-add-prod").value], { type: document.getElementById("img-add-prod").value.type });
+                            //let img = new Blob([document.getElementById("img-add-prod").files[0]], { type: document.getElementById("img-add-prod").files[0].type });
+                            //const reader = new FileReader();
+                            //reader.readAsDataURL(img);
+                            //console.log(img);
+                            const img64F = async (imagen)=>{
+                                return new Promise((resolve, reject)=>{
+                                    var reader = new FileReader();
+                                    reader.readAsDataURL(imagen);
+                                    reader.onloadend = function() {
+                                        resolve(reader.result);
+                                    }
+                                }); 
+                            }
+                            var imgDoc = document.getElementById("img-add-prod").files[0];
+                            var img = await img64F(imgDoc)
+                            console.log(img)
                             let data = {
                                 "nombre": document.getElementById("nombre-add-prod").value,
                                 "precio": document.getElementById("precio-add-prod").value,
@@ -98,6 +113,7 @@ aceppt_add_prod.addEventListener('click',()=>{
                                 "categoria": document.getElementById("categ-add-prod").value,
                                 "stock": document.getElementById("stock-add-prod").value
                             };
+                            console.log(data);
                             aceppt_add_prod.disabled = true;
                             fetch('http://localhost:3000/productos/registrar', {
                                 method: 'POST',
@@ -122,7 +138,7 @@ aceppt_add_prod.addEventListener('click',()=>{
                                 })
                                 .catch(error => document.getElementById("add-prod-msg").innerText = "Algo salió mal, intente de nuevo. \n error:" + error);
                                 aceppt_add_prod.disabled = false;
-                            }
+                        }
                     }
                 }
             }
@@ -158,13 +174,11 @@ btn_buscar_elim_pro.addEventListener('click',()=>{
         .then(response => {
             return response.json();})
         .then(response2 =>{
-            let imgBlob = new Blob([response2.imagen], { type: "image/png" });
-            let img = URL.createObjectURL(imgBlob);
-            console.log(img)
+            response2.imagen.type = 'image/png';
             document.getElementById("nombre-prod-elim").value = response2.nombre;
             document.getElementById("precio-prod-elim").value = response2.precio;
             document.getElementById("descrip-prod-elim").value = response2.descripcion;
-            document.getElementById("img-prod-elim").src = img;
+            document.getElementById("img-prod-elim").src = response2.imagen;
             document.getElementById("categ-prod-elim").value = response2.categoria;
             document.getElementById("stock-prod-elim").value = response2.stock;
             document.getElementById("acep-del-prod").disabled = false;

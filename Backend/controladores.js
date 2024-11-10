@@ -2,8 +2,8 @@ const db = require('./db');
 
 exports.regProd = async (req, res) => {
     let data = req.body;
-    let sqlCode = `INSERT INTO productos (nombre, precio, descripcion, imagen, categoria, stock)
-                    VALUES ("${data.nombre}", "${data.precio}", "${data.descripcion}", "${data.imagen}", "${data.categoria}", "${data.stock}");`
+    let sqlCode = `INSERT INTO productos (nombre, precio, descripcion, categoria, stock, imagen)
+                    VALUES ("${data.nombre}", "${data.precio}", "${data.descripcion}", "${data.categoria}", "${data.stock}", "${data.imagen}");`
     try {
         db.connection;
         let result = await db.promise().execute(sqlCode);
