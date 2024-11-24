@@ -1,4 +1,5 @@
 //Productos
+"use strict";
 var prod_add = document.getElementById("prod-a-agreg"); //boton nav agregar producto
 var pag_add_prod = document.getElementById("pag__agregar-producto"); //ventana agregar producto
 var cancel_add_prod = document.getElementById("cancelar_add-product"); //boton cancelar agregar producto
@@ -37,7 +38,7 @@ function mostrarProductosAside(){
         return response.json();})
     .then(response2 =>{
         containerProdTab.innerHTML = "";
-        for(element in response2[0]){
+        for(let element in response2[0]){
             containerProdTab.innerHTML += `<tr class="element-table containe-element">
                                                 <td>${response2[0][element].id}</td>
                                                 <td>${response2[0][element].nombre}</td>
@@ -136,9 +137,27 @@ aceppt_add_prod.addEventListener('click',async ()=>{
                                     }
                                 }); 
                             }
+
+                            /*const compressImg = async (imagen)=>{
+                                let compress = new compress();
+                                new Promise((resolve, reject)=>{
+                                    compress.compress([imagen], {
+                                        size: 0.1, 
+                                        quality: 0.5,
+                                        maxWidth: 800,  
+                                        maxHeight: 600,  
+                                        resize: true,  
+                                      }).then((result)=>{
+                                        resolve(result[0]);
+                                      })
+                                }) 
+                            }*/
+                            
                             var imgDoc = document.getElementById("img-add-prod").files[0];
+                            /*if(imgDoc.size/1024 > 100){
+                               imgDoc = await compressImg(imgDoc);
+                            }*/
                             var img = await img64F(imgDoc)
-                            console.log(img)
                             let data = {
                                 "nombre": document.getElementById("nombre-add-prod").value,
                                 "precio": document.getElementById("precio-add-prod").value,
@@ -147,7 +166,6 @@ aceppt_add_prod.addEventListener('click',async ()=>{
                                 "categoria": document.getElementById("categ-add-prod").value,
                                 "stock": document.getElementById("stock-add-prod").value
                             };
-                            console.log(data);
                             aceppt_add_prod.disabled = true;
                             fetch('http://localhost:3000/productos/registrar', {
                                 method: 'POST',
@@ -208,7 +226,7 @@ btn_buscar_elim_pro.addEventListener('click',()=>{
         .then(response => {
             return response.json();})
         .then(response2 =>{
-            response2.imagen.type = 'image/png';
+            //response2.imagen.type = 'image/png';
             document.getElementById("nombre-prod-elim").value = response2.nombre;
             document.getElementById("precio-prod-elim").value = response2.precio;
             document.getElementById("descrip-prod-elim").value = response2.descripcion;
@@ -276,7 +294,7 @@ document.getElementById("acep-del-prod").addEventListener('click',()=>{
     }
 })
 
-//pagina eliminar producto
+//pagina producto
 document.getElementById("prod-a-edit").addEventListener('click',()=>{
     document.getElementById("pag__editar-producto").classList.remove('no-visible-class');
     desactivarNav();
@@ -284,8 +302,17 @@ document.getElementById("prod-a-edit").addEventListener('click',()=>{
 
 //boton cancelar pagina editar producto
 document.getElementById("btn-cancel-edit-prod").addEventListener('click',()=>{
+    document.getElementById("id-prod-edit-busq").disabled = false; 
     document.getElementById("pag__editar-producto").classList.add('no-visible-class');
     document.getElementById("msg_error_edit_prod").innerText = "";
+    document.getElementById("edit-prod-show-img").src = "";
+    document.getElementById("nombre-prod-edit").setAttribute("readonly", "true");
+    document.getElementById("precio-prod-edit").setAttribute("readonly", "true");
+    document.getElementById("descrip-prod-edit").setAttribute("readonly", "true");
+    document.getElementById("img-prod-edit").disabled = true;
+    document.getElementById("categ-prod-edit").setAttribute("readonly", "true");
+    document.getElementById("stock-prod-edit").setAttribute("readonly", "true");
+    document.getElementById("btn-acep-edit-prod").disabled = true;
     for(let i=0;i<document.getElementsByClassName("clean-inp-edit").length;i++){
         document.getElementsByClassName("clean-inp-edit")[i].value = "";
         document.getElementsByClassName("clean-inp-edit")[i].classList.remove('input-error');
@@ -302,7 +329,146 @@ document.getElementById("btn_edit_prod").addEventListener('click',()=>{
         document.getElementById("msg_error_edit_prod").innerText = "Ingrese el id del producto";
     }
     else{
-        //buscar producto en backend
+        let data = { 
+            "id": document.getElementById("id-prod-edit-busq").value
+        }
+        fetch('http://localhost:3000/productos/consultar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            return response.json();})
+        .then(response2 =>{
+            document.getElementById("id-prod-edit-busq").disabled = true;
+            document.getElementById("nombre-prod-edit").value = response2.nombre;
+            document.getElementById("precio-prod-edit").value = response2.precio;
+            document.getElementById("descrip-prod-edit").value = response2.descripcion;
+            //document.getElementById("img-prod-edit");
+            document.getElementById("edit-prod-show-img").src = response2.imagen;
+            document.getElementById("categ-prod-edit").value = response2.categoria;
+            document.getElementById("stock-prod-edit").value = response2.stock;
+
+            document.getElementById("nombre-prod-edit").removeAttribute("readonly");
+            document.getElementById("precio-prod-edit").removeAttribute("readonly");
+            document.getElementById("descrip-prod-edit").removeAttribute("readonly");
+            document.getElementById("img-prod-edit").disabled = false;
+            document.getElementById("categ-prod-edit").removeAttribute("readonly");
+            document.getElementById("stock-prod-edit").removeAttribute("readonly");
+            document.getElementById("btn-acep-edit-prod").disabled = false;
+        })
+        .catch(error =>{
+            document.getElementById("msg_error_edit_prod").innerText = "Algo salió mal, intente de nuevo \n "+ error;
+        })
+    }
+})
+
+//boton aceptar en pag editar producto
+document.getElementById("btn-acep-edit-prod").addEventListener('click',async ()=>{  
+    document.getElementById("msg_error_edit_prod").innerText = "";
+    document.getElementById("nombre-prod-edit").classList.remove('input-error');
+    document.getElementById("precio-prod-edit").classList.remove('input-error');
+    document.getElementById("descrip-prod-edit").classList.remove('input-error');
+    document.getElementById("stock-prod-edit").classList.remove('input-error');
+    document.getElementById("categ-prod-edit").classList.remove('input-error');
+    if(document.getElementById("nombre-prod-edit").value == ""){
+        document.getElementById("nombre-prod-edit").classList.add('input-error');
+        document.getElementById("msg_error_edit_prod").innerText = "Ingrese un nombre del producto"
+    }
+    else{
+        if(document.getElementById("precio-prod-edit").value == ""){
+            document.getElementById("precio-prod-edit").classList.add('input-error');
+            document.getElementById("msg_error_edit_prod").innerText = "Ingrese un precio del producto"
+        }
+        else{
+            if(document.getElementById("descrip-prod-edit").value == ""){
+                document.getElementById("descrip-prod-edit").classList.add('input-error');
+                document.getElementById("msg_error_edit_prod").innerText = "Ingrese una descripcion del producto"
+            }
+            else{
+                if(document.getElementById("categ-prod-edit").value == ""){
+                    document.getElementById("categ-prod-edit").classList.add('input-error');
+                    document.getElementById("msg_error_edit_prod").innerText = "Ingrese una categoria del producto";
+                }
+                else{
+                    if(document.getElementById("stock-prod-edit").value == ""){
+                        document.getElementById("stock-prod-edit").classList.add('input-error');
+                        document.getElementById("msg_error_edit_prod").innerText = "Ingrese un stock del producto";
+                    }
+                    else{
+                        if(document.getElementById("img-prod-edit").value == "" && document.getElementById("edit-prod-show-img").src == ""){
+                            document.getElementById("img-prod-edit").classList.add('input-error');
+                            document.getElementById("msg_error_edit_prod").innerText = "Ingrese una imagen del producto";
+                        }
+                        else{
+                            let imagen;
+                            if(document.getElementById("img-prod-edit").value == ""){
+                                imagen = document.getElementById("edit-prod-show-img").src;
+                            }else{
+                                const img64F = async (imagen)=>{
+                                    return new Promise((resolve, reject)=>{
+                                        var reader = new FileReader();
+                                        reader.readAsDataURL(imagen);
+                                        reader.onloadend = function() {
+                                            resolve(reader.result);
+                                        }
+                                    }); 
+                                }
+                                let arg = document.getElementById("img-prod-edit").files[0];
+                                imagen = await img64F(arg);
+                            }
+
+                            let data = {
+                                "id": document.getElementById("id-prod-edit-busq").value,
+                                "nombre": document.getElementById("nombre-prod-edit").value,
+                                "precio": document.getElementById("precio-prod-edit").value,
+                                "descripcion": document.getElementById("descrip-prod-edit").value,
+                                "imagen": imagen,
+                                "categoria": document.getElementById("categ-prod-edit").value,
+                                "stock": document.getElementById("stock-prod-edit").value
+                            }
+                            
+                            fetch('http://localhost:3000/productos/editar', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(data),
+                            })
+                            .then(response => {
+                                return response.json(); 
+                              })
+                              .then(data => {
+                                document.getElementById("id-prod-edit-busq").disabled = false; 
+                                document.getElementById("msg_error_edit_prod").innerText = data.mensaje;
+                                document.getElementById("edit-prod-show-img").src = "";
+                                document.getElementById("nombre-prod-edit").setAttribute("readonly", "true");
+                                document.getElementById("precio-prod-edit").setAttribute("readonly", "true");
+                                document.getElementById("descrip-prod-edit").setAttribute("readonly", "true");
+                                document.getElementById("img-prod-edit").disabled = true;
+                                document.getElementById("categ-prod-edit").setAttribute("readonly", "true");
+                                document.getElementById("stock-prod-edit").setAttribute("readonly", "true");
+                                document.getElementById("btn-acep-edit-prod").disabled = true;
+                                for(let i=0;i<document.getElementsByClassName("clean-inp-edit").length;i++){
+                                    document.getElementsByClassName("clean-inp-edit")[i].value = "";
+                                    document.getElementsByClassName("clean-inp-edit")[i].classList.remove('input-error');
+                                }
+                                setTimeout(() => {
+                                    document.getElementById("msg_error_edit_prod").innerText = "";
+                                  }, 3000);
+                                console.log(data);  
+                              })
+                              .catch(error => {
+                                console.error('Error en la solicitud:', error);
+                              });
+                        }
+                    }
+
+                }
+            }
+        }
     }
 })
 
@@ -313,7 +479,7 @@ document.getElementById("prod-a-cons").addEventListener('click',()=>{
     desactivarNav();
 })
 
-//cancelar consultar peoducto
+//cancelar consultar producto
 document.getElementById("accept-cons-prod").addEventListener('click',()=>{
     document.getElementById("pag__consultar-producto").classList.add('no-visible-class');
     document.getElementById("id-prod-cons-busq").classList.remove('input-error');

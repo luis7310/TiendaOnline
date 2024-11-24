@@ -69,3 +69,18 @@ exports.consProdAll = async (req,res) => {
         console.log(error);
     }
 }
+
+exports.editProd = async function (req, res){
+    let data = req.body;
+    let sqlCode = `UPDATE productos
+    SET nombre = "${data.nombre}", precio = "${data.precio}", descripcion = "${data.descripcion}", imagen = "${data.imagen}", categoria = "${data.categoria}", stock = "${data.stock}"
+    WHERE id = "${data.id}";`;
+    
+    try {
+        let result = await db.promise().execute(sqlCode);
+        res.status(201).json({mensaje : "Producto Actualizado"});
+    }
+    catch(error){
+        console.log(error);
+    }
+}
